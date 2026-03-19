@@ -1,0 +1,6 @@
+frpridawi_db_user
+
+kjHiH42nbPS5epQW
+
+
+mongodb+srv://frpridawi_db_user:kjHiH42nbPS5epQW@cluster0.sf5a9en.mongodb.net/?appName=Cluster0

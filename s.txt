@@ -1,0 +1,6 @@
+MONGO_URI=mongodb+srv://frpridawi_db_user:kjHiH42nbPS5epQW@aqsadweb.dsaklqd.mongodb.net/aqsat_db?retryWrites=true&w=majority
+JWT_SECRET=aqsat_super_secret_key_2024
+PORT=5000
+NODE_ENV=development
+ADMIN_DEFAULT_EMAIL=admin@aqsat.com
+ADMIN_DEFAULT_PASS=admin123

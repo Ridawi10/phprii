@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام الأقساط | الرئيسية</title>
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- ===== ANIMATED BACKGROUND ===== -->
+<div class="bg-canvas">
+  <div class="bg-gradient"></div>
+  <div class="grid-lines"></div>
+  <div id="particle-canvas"></div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="main-navbar">
+  <a href="landing.html" class="nav-logo">
+    <div class="nav-logo-icon">💎</div>
+    <span class="nav-logo-text">نظام الأقساط</span>
+  </a>
+  <div class="nav-links">
+    <button class="nav-btn nav-btn-ghost" onclick="Landing.openRegister()">
+      📝 إنشاء حساب
+    </button>
+    <button class="nav-btn nav-btn-gold" onclick="Landing.openLogin()">
+      🔐 تسجيل الدخول
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+
+  <div class="hero-badge">
+    <span class="dot"></span>
+    <span id="hero-badge-text">✨ نظام إدارة الأقساط</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line-gold" id="hero-title-line1">إدارة أقساطك</span>
+    <span class="line-white" id="hero-title-line2">بكل سهولة واحترافية</span>
+  </h1>
+
+  <p class="hero-subtitle" id="hero-subtitle">
+    نظام متكامل لإدارة الأقساط والتسديدات للعملاء
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn-hero-primary" id="hero-btn-primary" onclick="Landing.openRegister()">
+      🚀 ابدأ الآن
+    </button>
+    <button class="btn-hero-secondary" id="hero-btn-secondary" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">
+      📖 اعرف أكثر
+    </button>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="stat1-num">+500</span>
+      <span class="hero-stat-label" id="stat1-label">عميل مسجل</span>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.1);height:40px;align-self:center"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="stat2-num">+1200</span>
+      <span class="hero-stat-label" id="stat2-label">قسط مُدار</span>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.1);height:40px;align-self:center"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" id="stat3-num">99%</span>
+      <span class="hero-stat-label" id="stat3-label">دقة في السجلات</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+    <span class="scroll-text">تمرير</span>
+  </div>
+</section>
+
+<!-- ===== EXTRA TEXTS (Admin editable) ===== -->
+<div class="extra-texts-section" id="extra-texts-section">
+  <div id="extra-texts-container"></div>
+</div>
+
+<!-- ===== FEATURES ===== -->
+<section class="section" id="features-section">
+  <div class="section-label">المميزات</div>
+  <h2 class="section-title">كل ما تحتاجه في مكان واحد</h2>
+  <p class="section-sub">نظام شامل ومتكامل مصمم خصيصاً للسوق العراقية بواجهة عربية سهلة الاستخدام</p>
+  <div class="features-grid" id="features-grid"></div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>جميع الحقوق محفوظة &copy; <span id="footer-year"></span> &nbsp;|&nbsp; نظام الأقساط <span>💎</span></p>
+</footer>
+
+<!-- ===== زر تعديل الأدمن ===== -->
+<button class="admin-edit-btn" onclick="Landing.openEditContent()">
+  ✏️ تعديل المحتوى
+</button>
+
+
+<!-- ===================================================== -->
+<!-- =========== MODALS =========== -->
+<!-- ===================================================== -->
+
+<!-- Modal: تسجيل الدخول -->
+<div class="modal-overlay" id="modal-login">
+  <div class="auth-modal">
+    <div class="auth-modal-header">
+      <div class="auth-modal-icon">🔐</div>
+      <div class="auth-modal-title">تسجيل الدخول</div>
+      <div class="auth-modal-sub">أدخل بيانات حسابك للمتابعة</div>
+    </div>
+    <div class="auth-modal-body">
+      <div class="auth-error" id="login-error"></div>
+      <div class="auth-form-group">
+        <label>اسم المستخدم</label>
+        <input type="text" class="auth-input" id="login-user" placeholder="اسم المستخدم" autocomplete="username">
+      </div>
+      <div class="auth-form-group">
+        <label>كلمة المرور</label>
+        <input type="password" class="auth-input" id="login-pass" placeholder="••••••••" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter') Landing.doLogin()">
+      </div>
+      <div class="auth-divider"></div>
+      <button class="btn-auth" onclick="Landing.doLogin()">🔐 دخول</button>
+      <button class="btn-auth-ghost" onclick="Landing.closeAllModals()">إلغاء</button>
+      <div class="auth-switch">
+        ليس لديك حساب؟
+        <a onclick="Landing.openRegister()">إنشاء حساب جديد</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: إنشاء حساب -->
+<div class="modal-overlay" id="modal-register">
+  <div class="auth-modal">
+    <div class="auth-modal-header">
+      <div class="auth-modal-icon">📝</div>
+      <div class="auth-modal-title">إنشاء حساب جديد</div>
+      <div class="auth-modal-sub">سيتم مراجعة طلبك من قبل المدير</div>
+    </div>
+    <div class="auth-modal-body">
+      <div class="auth-error" id="reg-error"></div>
+      <div class="auth-success" id="reg-success"></div>
+
+      <div id="reg-form-fields">
+        <div class="auth-form-group">
+          <label>الاسم الكامل <span style="color:#f87171">*</span></label>
+          <input type="text" class="auth-input" id="reg-name" placeholder="اسمك الكامل">
+        </div>
+        <div class="auth-form-group">
+          <label>رقم الهاتف</label>
+          <input type="tel" class="auth-input" id="reg-phone" placeholder="07XXXXXXXXX" style="direction:ltr;text-align:right">
+        </div>
+        <div class="auth-form-group">
+          <label>اسم المستخدم <span style="color:#f87171">*</span></label>
+          <input type="text" class="auth-input" id="reg-user" placeholder="اختر اسم مستخدم فريد">
+        </div>
+        <div class="auth-form-group">
+          <label>كلمة المرور <span style="color:#f87171">*</span></label>
+          <input type="password" class="auth-input" id="reg-pass" placeholder="6 أحرف على الأقل">
+        </div>
+        <div class="auth-divider"></div>
+        <button class="btn-auth" onclick="Landing.doRegister()">📤 إرسال طلب التسجيل</button>
+        <button class="btn-auth-ghost" onclick="Landing.closeAllModals()">إلغاء</button>
+        <div class="auth-switch">
+          لديك حساب بالفعل؟
+          <a onclick="Landing.openLogin()">تسجيل الدخول</a>
+        </div>
+      </div>
+
+      <div id="reg-pending-msg" style="display:none">
+        <div class="pending-info">
+          <div class="pending-icon">⏳</div>
+          <div class="pending-title">طلبك قيد المراجعة</div>
+          <div class="pending-desc">
+            شكراً لتسجيلك! سيراجع المدير طلبك في أقرب وقت ممكن.
+            <br>يمكنك تسجيل الدخول لاحقاً بعد الموافقة.
+          </div>
+          <div style="margin-top:20px">
+            <button class="btn-auth-ghost" onclick="Landing.closeAllModals()">حسناً</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: بوابة العميل بعد الدخول -->
+<div class="modal-overlay" id="modal-client-dash">
+  <div class="auth-modal">
+    <div class="auth-modal-header">
+      <div class="auth-modal-icon">👤</div>
+      <div class="auth-modal-title" id="client-dash-name">مرحباً</div>
+      <div class="auth-modal-sub">@<span id="client-dash-user"></span></div>
+    </div>
+    <div class="auth-modal-body">
+      <div style="text-align:center;padding:10px 0 20px">
+        <p style="color:var(--text-muted);font-size:14px;line-height:1.8;margin-bottom:24px">
+          تم تسجيل دخولك بنجاح!<br>
+          يمكنك الآن الاطلاع على أقساطك وسجل مدفوعاتك.
+        </p>
+        <button class="btn-auth" onclick="Landing.goToClientSystem()">
+          🏠 الدخول إلى لوحة التحكم
+        </button>
+        <button class="btn-auth-ghost" style="margin-top:10px" onclick="Landing.closeAllModals()">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: تعديل المحتوى (للأدمن) -->
+<div class="modal-overlay" id="modal-edit-content">
+  <div class="auth-modal edit-modal" style="max-width:680px">
+    <div class="auth-modal-header">
+      <div class="auth-modal-icon">✏️</div>
+      <div class="auth-modal-title">تعديل محتوى الواجهة</div>
+      <div class="auth-modal-sub">يمكنك تغيير جميع النصوص والأرقام</div>
+    </div>
+    <div class="auth-modal-body">
+
+      <div style="font-size:12px;font-weight:700;color:rgba(212,168,67,0.7);margin-bottom:12px;letter-spacing:1px">🏷️ الشريط العلوي</div>
+      <div class="auth-form-group">
+        <label>نص الشارة</label>
+        <input type="text" class="auth-input" id="edit-badge" placeholder="شارة الهيرو">
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:rgba(212,168,67,0.7);margin:16px 0 12px;letter-spacing:1px">📝 العنوان الرئيسي</div>
+      <div class="auth-form-group">
+        <label>السطر الأول (ذهبي)</label>
+        <input type="text" class="auth-input" id="edit-title1" placeholder="السطر الأول">
+      </div>
+      <div class="auth-form-group">
+        <label>السطر الثاني (أبيض)</label>
+        <input type="text" class="auth-input" id="edit-title2" placeholder="السطر الثاني">
+      </div>
+      <div class="auth-form-group">
+        <label>النص التوضيحي</label>
+        <textarea class="auth-input edit-text-area" id="edit-subtitle" placeholder="النص تحت العنوان" style="min-height:70px"></textarea>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:rgba(212,168,67,0.7);margin:16px 0 12px;letter-spacing:1px">🔘 الأزرار</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="auth-form-group">
+          <label>الزر الأول</label>
+          <input type="text" class="auth-input" id="edit-btn1">
+        </div>
+        <div class="auth-form-group">
+          <label>الزر الثاني</label>
+          <input type="text" class="auth-input" id="edit-btn2">
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:rgba(212,168,67,0.7);margin:16px 0 12px;letter-spacing:1px">📊 الإحصاءات</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+        <div>
+          <input type="text" class="auth-input" id="edit-stat1n" placeholder="رقم 1" style="margin-bottom:6px">
+          <input type="text" class="auth-input" id="edit-stat1l" placeholder="تسمية 1">
+        </div>
+        <div>
+          <input type="text" class="auth-input" id="edit-stat2n" placeholder="رقم 2" style="margin-bottom:6px">
+          <input type="text" class="auth-input" id="edit-stat2l" placeholder="تسمية 2">
+        </div>
+        <div>
+          <input type="text" class="auth-input" id="edit-stat3n" placeholder="رقم 3" style="margin-bottom:6px">
+          <input type="text" class="auth-input" id="edit-stat3l" placeholder="تسمية 3">
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:rgba(212,168,67,0.7);margin:16px 0 12px;letter-spacing:1px">📢 النصوص الإضافية</div>
+      <div id="extra-texts-editor"></div>
+      <button onclick="Landing.addExtraText()" class="btn-auth-ghost" style="margin-bottom:20px;font-size:13px">
+        ➕ إضافة نص جديد
+      </button>
+
+      <div class="auth-divider"></div>
+      <button class="btn-auth" onclick="Landing.saveEditContent()">💾 حفظ جميع التغييرات</button>
+      <button class="btn-auth-ghost" style="margin-top:10px" onclick="Landing.closeAllModals()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // إغلاق بالنقر خارج الـ modal
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.addEventListener('click', e => {
+      if (e.target === m) Landing.closeAllModals();
+    });
+  });
+
+  // ESC لإغلاق
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') Landing.closeAllModals();
+  });
+</script>
+
+<script src="js/landing.js"></script>
+</body>
+</html>
